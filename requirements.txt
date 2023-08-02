@@ -13,7 +13,7 @@ mysql-connector-python
 protobuf==4.21.12
 pydantic==2.1.1
 pydantic_core==2.4.0
-python-dotenv==1.0.0
+python-dotenv
 requests==2.31.0
 sniffio==1.3.0
 SQLAlchemy==2.0.19
