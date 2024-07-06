@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from models import Div,Ticker, session
+from models import Div,Ticker, session,Ativos
 from get_dados_stinv import Dados
+from typing import Union
 
 app = FastAPI()
 
@@ -22,6 +23,23 @@ async def get_div(ticker: str):
     div = div_query.filter(Div.ticker==ticker)
     
     return div.first()
+
+
+
+##http://localhost:8000/ativos/?ticker=a
+
+@app.get("/ativos/")
+async def get_ativos(ticker: str | None = None):
+
+    if ticker:
+        return {'tickerx':ticker}
+    else:
+        return {'ticker':ticker}
+    
+    # ativo_query = session.query(Ativos)
+    # ativo = ativo_query.filter(Ativos.ticker==ticker)
+    
+    # return ativo.first()
     
 @app.get("/ticker/{ticker}")
 async def get_div(ticker: str):
@@ -36,6 +54,14 @@ async def get_divid(ticker: str):
      dados = Dados()
      
      return dados.getProventos(ticker)
+
+@app.post("/history/{ticker}")
+async def post_hist(ticker: str):
+     
+     dados = Dados()
+     
+     return dados.postIndicatorHist(ticker)
+     
      
 
 ###uvicorn app:app --reload
