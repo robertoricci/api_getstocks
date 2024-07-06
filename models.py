@@ -18,28 +18,28 @@ session = Session()
 Base = declarative_base()
 
 class Div(Base):
-    __tablename__ = "dividendos"
+    __tablename__ = "public.dividendos"
     id = Column(Integer,primary_key=True)
     ticker = Column(String(10))
     json = Column(Text)
     data = Column(DateTime)
      
 class Ticker(Base):
-        __tablename__ = "ticker"
+        __tablename__ = "public.ticker"
         id = Column(Integer,primary_key=True)
         ticker = Column(String(10))
         json = Column(Text)
         data = Column(DateTime)
 
 class Historico(Base):
-        __tablename__ = "historico"
+        __tablename__ = "public.historico"
         id = Column(Integer,primary_key=True)
         ticker = Column(String(10))
         json = Column(Text)
         data = Column(DateTime)
 
 class Ativos(Base):
-    __tablename__ = "ativos"
+    __tablename__ = "public.ativos"
     companyid = Column(Integer,primary_key=True)
     companyname = Column(Text)
     ticker = Column(Text)
