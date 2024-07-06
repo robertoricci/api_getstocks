@@ -29,7 +29,7 @@ async def get_div(ticker: str):
 ##http://localhost:8000/ativos/?ticker=a
 
 @app.get("/ativos/")
-async def get_ativos(ticker: str | None = None):
+async def get_ativos(ticker: str ):
 
     if ticker:
         return {'tickerx':ticker}
