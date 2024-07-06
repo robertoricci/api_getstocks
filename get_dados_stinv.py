@@ -44,9 +44,9 @@ class Dados():
         
         url=f'https://statusinvest.com.br/acao/companytickerprovents?ticker={ticker}&chartProventsType=2'
         
-        dados = req.get(url,headers=headers).json()
+        json_data = req.get(url,headers=headers).json()
         ##dadosj = json.dumps(dados)
-        return dados
+        return json_data
     
 
     def postIndicatorHist(self, ticker: str):
@@ -61,12 +61,14 @@ class Dados():
         # parse json data
         json_data = resp.json()
 
-        # return historical values for each indicator
-        return {
-            data["key"]: {
-                rank_data["rank"]: rank_data["value"]
-                for rank_data in data["ranks"]
-                if "rank" in rank_data and "value" in rank_data
-            }
-            for data in list(json_data["data"].values())[0]
-        }
+        # # return historical values for each indicator
+        # return {
+        #     data["key"]: {
+        #         rank_data["rank"]: rank_data["value"]
+        #         for rank_data in data["ranks"]
+        #         if "rank" in rank_data and "value" in rank_data
+        #     }
+        #     for data in list(json_data["data"].values())[0]
+        # }
+
+        return json_data
